@@ -402,7 +402,7 @@ namespace Dreamteck.Splines.Editor
         public bool EditButton(bool selected)
         {
             float width = 40f;
-            editButtonContent.image = ResourceUtility.EditorLoadTexture("Splines/Editor/Icons", "edit_cursor");
+            editButtonContent.image = EditorResources.LoadIcon("edit_cursor");
             if (editButtonContent.image != null)
             {
                 editButtonContent.text = "";

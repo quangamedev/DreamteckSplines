@@ -139,7 +139,7 @@
             {
                 iconName += "_dark";
             }
-            Texture2D tex = ResourceUtility.EditorLoadTexture("Splines/Editor/Icons", iconName);
+            Texture2D tex = EditorResources.LoadIcon($"Splines/Editor/Icons{iconName}");
             if (tex != null)
             {
                 content.image = tex;

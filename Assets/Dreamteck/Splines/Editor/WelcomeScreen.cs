@@ -103,7 +103,7 @@ namespace Dreamteck.Splines.Editor
 
         protected override void GetHeader()
         {
-            header = ResourceUtility.EditorLoadTexture("Splines/Editor/Icons", "plugin_header");
+            header = EditorResources.LoadIcon("plugin_header");
         }
 
         public override void Load()
@@ -121,9 +121,9 @@ namespace Dreamteck.Splines.Editor
             panels[6] = new WindowPanel("Text Mesh Pro", false, panels[0], 0.25f);
 
             panels[0].elements.Add(new WindowPanel.Space(400, 10));
-            panels[0].elements.Add(new WindowPanel.Thumbnail("Utilities/Editor/Images", "changelog", "What's new?", "See all new features, important changes and bugfixes in " + PluginInfo.version, new ActionLink(panels[1], panels[0])));
-            panels[0].elements.Add(new WindowPanel.Thumbnail("Utilities/Editor/Images", "get_started", "Get Started + Packages", "Learn how to use Dreamteck Splines and install core packages", new ActionLink(panels[2], panels[0])));
-            panels[0].elements.Add(new WindowPanel.Thumbnail("Utilities/Editor/Images", "support", "Community", "Got a problem or a feature request? Join the community!", new ActionLink(panels[3], panels[0])));
+            panels[0].elements.Add(new WindowPanel.Thumbnail("changelog", "What's new?", "See all new features, important changes and bugfixes in " + PluginInfo.version, new ActionLink(panels[1], panels[0])));
+            panels[0].elements.Add(new WindowPanel.Thumbnail("get_started", "Get Started + Packages", "Learn how to use Dreamteck Splines and install core packages", new ActionLink(panels[2], panels[0])));
+            panels[0].elements.Add(new WindowPanel.Thumbnail("support", "Community", "Got a problem or a feature request? Join the community!", new ActionLink(panels[3], panels[0])));
 
             _bannerData = LoadBannersData("https://dreamteck.io/plugins/splines/welcome.json", "Dreamteck.Splines.welcomeScreenVersion");
 
@@ -168,15 +168,15 @@ namespace Dreamteck.Splines.Editor
             panels[1].elements.Add(new WindowPanel.ScrollText(400, 500, changelogText));
 
             panels[2].elements.Add(new WindowPanel.Space(400, 10));
-            panels[2].elements.Add(new WindowPanel.Thumbnail("Utilities/Editor/Images", "manual", "User Manual", "Read a thorough documentation of the whole package along with a list of API methods.", new ActionLink("https://dreamteck-splines.netlify.app/")));
-            panels[2].elements.Add(new WindowPanel.Thumbnail("Utilities/Editor/Images", "tutorials", "Video Tutorials", "Watch a series of Youtube videos to get started.", new ActionLink("https://www.youtube.com/playlist?list=PLkZqalQdFIQ6zym8RwSWWl3PZJuUdvNK6")));
-            panels[2].elements.Add(new WindowPanel.Thumbnail("Utilities/Editor/Images", "examples", "Examples", "Install example scenes", new ActionLink(panels[4], panels[2])));
+            panels[2].elements.Add(new WindowPanel.Thumbnail( "manual", "User Manual", "Read a thorough documentation of the whole package along with a list of API methods.", new ActionLink("https://dreamteck-splines.netlify.app/")));
+            panels[2].elements.Add(new WindowPanel.Thumbnail( "tutorials", "Video Tutorials", "Watch a series of Youtube videos to get started.", new ActionLink("https://www.youtube.com/playlist?list=PLkZqalQdFIQ6zym8RwSWWl3PZJuUdvNK6")));
+            panels[2].elements.Add(new WindowPanel.Thumbnail( "examples", "Examples", "Install example scenes", new ActionLink(panels[4], panels[2])));
 
-            panels[2].elements.Add(new WindowPanel.Thumbnail("Utilities/Editor/Images", "playmaker", "Playmaker Actions", "Install Playmaker actions for Dreamteck Splines", new ActionLink(panels[5], panels[2])));
-            panels[2].elements.Add(new WindowPanel.Thumbnail("Utilities/Editor/Images", "tmpro", "Text Mesh Pro Support", "Manage components for working with Text Mesh Pro", new ActionLink(panels[6], panels[2])));
+            panels[2].elements.Add(new WindowPanel.Thumbnail( "playmaker", "Playmaker Actions", "Install Playmaker actions for Dreamteck Splines", new ActionLink(panels[5], panels[2])));
+            panels[2].elements.Add(new WindowPanel.Thumbnail( "tmpro", "Text Mesh Pro Support", "Manage components for working with Text Mesh Pro", new ActionLink(panels[6], panels[2])));
 
             panels[3].elements.Add(new WindowPanel.Space(400, 10));
-            panels[3].elements.Add(new WindowPanel.Thumbnail("Utilities/Editor/Images", "discord", "Discord Server", "Join our Discord community and chat with other developers who use Splines.", new ActionLink("https://discord.gg/bkYDq8v")));
+            panels[3].elements.Add(new WindowPanel.Thumbnail("discord", "Discord Server", "Join our Discord community and chat with other developers who use Splines.", new ActionLink("https://discord.gg/bkYDq8v")));
 
             panels[4].elements.Add(new WindowPanel.Space(400, 10));
             panels[4].elements.Add(new WindowPanel.Button(400, 30, "Install Examples", new ActionLink(InstallExamples)));
