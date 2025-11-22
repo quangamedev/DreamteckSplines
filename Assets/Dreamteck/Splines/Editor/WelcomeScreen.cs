@@ -150,7 +150,7 @@ namespace Dreamteck.Splines.Editor
                 DrawFooter();
             }
 
-            string path = ResourceUtility.FindFolder(Application.dataPath, "Dreamteck/Splines/Editor");
+            string path = ResourceUtility.FindFolder(Application.dataPath, "io.dreamteck.splines/Editor");
             string changelogText = "Changelog file not found.";
             if (Directory.Exists(path))
             {
@@ -190,13 +190,13 @@ namespace Dreamteck.Splines.Editor
             panels[5].elements.Add(new WindowPanel.Button(400, 30, "Install Actions", new ActionLink(InstallPlaymaker)));
             panels[5].elements.Add(new WindowPanel.Button(400, 30, "Uninstall Actions", new ActionLink(UninstallPlaymaker)));
 
-            _playmakerInstaller = new ModuleInstaller("Splines", "PlaymakerActions");
+            _playmakerInstaller = new ModuleInstaller("io.dreamteck.splines", "PlaymakerActions");
             _playmakerInstaller.AddUninstallDirectory("Splines/PlaymakerActions");
 
-            _examplesInstaller = new ModuleInstaller("Splines", "Examples");
+            _examplesInstaller = new ModuleInstaller("io.dreamteck.splines", "Examples");
             _examplesInstaller.AddUninstallDirectory("Splines/Examples");
 
-            _tmproInstaller = new ModuleInstaller("Splines", "TMPro");
+            _tmproInstaller = new ModuleInstaller("io.dreamteck.splines", "TMPro");
             _tmproInstaller.AddAssemblyLink("Splines", "Dreamteck.Splines", "Unity.TextMeshPro");
             _tmproInstaller.AddScriptingDefine("DREAMTECK_SPLINES_TMPRO");
             _tmproInstaller.AddUninstallDirectory("Splines/Components/TMPro");

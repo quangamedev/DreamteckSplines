@@ -110,7 +110,7 @@ namespace Dreamteck.Splines.Editor
             }
             isClosed = closed;
             type = t;
-            path = ResourceUtility.FindFolder(Application.dataPath, "Dreamteck/Splines/Presets");
+            path = ResourceUtility.FindFolder(Application.dataPath, "io.dreamteck.splines/Presets");
         }
 
         public void Save(string name)
@@ -127,7 +127,7 @@ namespace Dreamteck.Splines.Editor
 
         public static void Delete(string filename)
         {
-            path = ResourceUtility.FindFolder(Application.dataPath, "Dreamteck/Splines/Presets");
+            path = ResourceUtility.FindFolder(Application.dataPath, "io.dreamteck.splines/Presets");
             if (!Directory.Exists(path))
             {
                 Debug.LogError("Directory " + path + " does not exist");
@@ -138,7 +138,7 @@ namespace Dreamteck.Splines.Editor
 
         public static SplinePreset[] LoadAll()
         {
-            path = ResourceUtility.FindFolder(Application.dataPath, "Dreamteck/Splines/Presets");
+            path = ResourceUtility.FindFolder(Application.dataPath, "io.dreamteck.splines/Presets");
             if (!Directory.Exists(path))
             {
                 Debug.LogError("Directory " + path + " does not exist");
