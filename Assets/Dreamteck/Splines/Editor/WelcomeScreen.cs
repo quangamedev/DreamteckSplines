@@ -20,38 +20,54 @@ namespace Dreamteck.Splines.Editor
 
             if (!showInfo)
             {
-                var url = "https://dreamteck.io/plugins/splines/welcome.json";
-                var prefKey = "Dreamteck.Splines.welcomeScreenVersion";
-                var welcomeScreenVersion = EditorPrefs.GetInt(prefKey, -1);
+                CheckWelcomeScreenVersionAsync(showInfo);
+            }
+            else
+            {
+                ShowInfo();
+            }
+        }
 
-                using (var mainDataReq = UnityWebRequest.Get(url))
+        private static async void CheckWelcomeScreenVersionAsync(bool currentShowInfo)
+        {
+            var url = "https://dreamteck.io/plugins/splines/welcome.json";
+            var prefKey = "Dreamteck.Splines.welcomeScreenVersion";
+            bool showInfo = currentShowInfo;
+            
+            using (var mainDataReq = UnityWebRequest.Get(url))
+            {
+                var operation = mainDataReq.SendWebRequest();
+
+                while (!operation.isDone)
                 {
-                    mainDataReq.SendWebRequest();
+                    await System.Threading.Tasks.Task.Yield();
+                }
 
-                    while (!mainDataReq.isDone || mainDataReq.result == UnityWebRequest.Result.InProgress)
-                    {
+                if (mainDataReq.result == UnityWebRequest.Result.ProtocolError ||
+                    mainDataReq.result == UnityWebRequest.Result.DataProcessingError ||
+                    mainDataReq.result == UnityWebRequest.Result.ConnectionError)
+                {
+                    Debug.LogError("An error occured while fetching the banners data.");
+                }
+                else if(!showInfo)
+                {
+                    var jObj = JsonUtility.FromJson<WelcomeWindow.Data>(mainDataReq.downloadHandler.text);
+                    var welcomeScreenVersion = jObj.version;
 
-                    }
+                    var currentVersion = EditorPrefs.GetInt(prefKey, -1);
 
-                    if (mainDataReq.result == UnityWebRequest.Result.ProtocolError ||
-                        mainDataReq.result == UnityWebRequest.Result.DataProcessingError ||
-                        mainDataReq.result == UnityWebRequest.Result.ConnectionError)
-                    {
-                        Debug.LogError("An error occured while fetching the banners data.");
-                    }
-                    else if(!showInfo)
-                    {
-                        var jObj = JsonUtility.FromJson<WelcomeWindow.Data>(mainDataReq.downloadHandler.text);
-                        welcomeScreenVersion = jObj.version;
-
-                        var currentVersion = EditorPrefs.GetInt(prefKey, -1);
-
-                        showInfo = currentVersion < welcomeScreenVersion;
-                    }
+                    showInfo = currentVersion < welcomeScreenVersion;
                 }
             }
 
-            if (!showInfo) return;
+            if (showInfo)
+            {
+                ShowInfo();
+            }
+        }
+
+        private static void ShowInfo()
+        {
             EditorPrefs.SetString("Dreamteck.Splines.Info.version", version);
             EditorApplication.update += OpenWindowOnUpdate;
         }
